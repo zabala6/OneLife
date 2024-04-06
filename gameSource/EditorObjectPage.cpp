@@ -772,7 +772,7 @@ EditorObjectPage::EditorObjectPage()
 
     addKeyClassDescription( &mKeyLegend, "n/m", "Switch layers" );
     addKeyClassDescription( &mKeyLegend, "arrows", "Move layer" );
-    addKeyClassDescription( &mKeyLegend, "Pg Up/Down", "Layer order" );
+    addKeyClassDescription( &mKeyLegend, "w/s", "Layer order" );
     addKeyClassDescription( &mKeyLegend, "Ctr/Shft", "Bigger jumps" );
     addKeyDescription( &mKeyLegend, 'F', "Flip whole object" );
     addKeyDescription( &mKeyLegend, 'r', "Rotate layer" );
@@ -6734,6 +6734,19 @@ void EditorObjectPage::keyDown( unsigned char inASCII ) {
             mCurrentObject.slotPos[i].x *= -1;
             }
         }
+
+    int offset = 1;
+    
+    if( isCommandKeyDown() ) {
+        offset = 5;
+        }
+    if( isShiftKeyDown() ) {
+        offset = 10;
+        }
+    if( isCommandKeyDown() && isShiftKeyDown() ) {
+        offset = 20;
+        }
+
     if( mPickedObjectLayer != -1 && inASCII == 8 ) {
         // backspace
         
@@ -7063,6 +7076,12 @@ void EditorObjectPage::keyDown( unsigned char inASCII ) {
         mPrintRequested = true;
         mSavePrintOnly = true;
         }
+    else if ( inASCII == 'w' ) {
+        moveSpriteLayerUp( offset )
+    }
+    else if ( inASCII == 's' ){
+        moveSpriteLayerDown( offset );
+    }
     }
 
 
@@ -7241,14 +7260,6 @@ void EditorObjectPage::specialKeyDown( int inKeyCode ) {
                     mHoverObjectLayer = mPickedObjectLayer;
                     }
                 break;
-            case MG_KEY_PAGE_UP:  {
-                moveSpriteLayerUp( offset )
-                break;
-                }
-            case MG_KEY_PAGE_DOWN: {
-                moveSpriteLayerDown( offset );
-                break;   
-                }
             }
         }
     else if( mPickedSlot != -1 ) {

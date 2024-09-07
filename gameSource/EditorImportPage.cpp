@@ -104,10 +104,10 @@ EditorImportPage::EditorImportPage()
     mCenterPoint.y = 0;
 
     addComponent( &mShadowSlider );
-    mShadowSlider.setValue( 0.5 );
+    mShadowSlider.setValue( 0.0 );
     
     addComponent( &mBlackLineThresholdSlider );
-    mBlackLineThresholdSlider.setValue( 0.2 );
+    mBlackLineThresholdSlider.setValue( 1.0 );
     mBlackLineThresholdSlider.addActionListener( this );
 
     addComponent( &mBlackLineThresholdDefaultButton );
@@ -122,7 +122,7 @@ EditorImportPage::EditorImportPage()
 
 
     addComponent( &mSaturationSlider );
-    mSaturationSlider.setValue( 0.5 );
+    mSaturationSlider.setValue( 0.0 );
     mSaturationSlider.addActionListener( this );
 
     addComponent( &mSaturationDefaultButton );

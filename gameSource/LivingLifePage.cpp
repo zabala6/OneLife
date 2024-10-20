@@ -27425,6 +27425,7 @@ void LivingLifePage::keyDown( unsigned char inASCII ) {
             if( !TextField::isAnyFocused() ) {
                 drawGridToggle = !drawGridToggle;
                 }
+            break;
         case 'H':
             if( !TextField::isAnyFocused() ) {
                 drawGuiPanelToggle = !drawGuiPanelToggle;
